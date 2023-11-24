@@ -6,8 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "tecnico")
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class Tecnico {
     @Id
@@ -16,9 +16,9 @@ public class Tecnico {
     private String nombre;
     private String apellido;
 
-    @ManyToOne
-    @JoinColumn(name = "id_incidete", referencedColumnName = "id")
-    private Incidente incidente;
+  //  @ManyToOne
+   // @JoinColumn(name = "id_incidente", referencedColumnName = "id")
+   // private Incidente incidente;
 
     @ManyToOne
     @JoinColumn(name = "id_especialidad",referencedColumnName = "id")

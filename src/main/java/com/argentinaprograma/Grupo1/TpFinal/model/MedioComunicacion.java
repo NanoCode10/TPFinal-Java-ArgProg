@@ -8,13 +8,13 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "medio_comunicacion")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class MedioComunicacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private MedioEnum medio;
-
     private String contacto;
 
 }

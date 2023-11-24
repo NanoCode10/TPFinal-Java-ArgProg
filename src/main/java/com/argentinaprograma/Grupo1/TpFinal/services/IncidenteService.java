@@ -15,6 +15,8 @@ public class IncidenteService {
         this.incidenteRepository = incidenteRepository;
     }
 
-    public Integer guardar(Incidente i){ return incidenteRepository.save(i).getId(); }
+    public Integer guardar(Incidente i){
+        return incidenteRepository.save(i).getId();
+    }
 
 }

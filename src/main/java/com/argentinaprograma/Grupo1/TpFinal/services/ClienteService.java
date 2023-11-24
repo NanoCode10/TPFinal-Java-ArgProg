@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ClienteService {
-
     ClienteRepository clienteRepository;
     @Autowired
     public ClienteService(ClienteRepository clienteRepository) {
