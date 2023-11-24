@@ -34,9 +34,13 @@ public class Incidente {
     @JoinColumn(name = "id_tipoproblema", referencedColumnName = "id")
     private TipoProblema tipoProblema;
 
-    @ManyToOne
-    @JoinColumn(name = "id_servicio",referencedColumnName = "id")
-    private Servicio servicio;
+    @ManyToMany
+    @JoinTable(
+            name = "incidente_servicio",
+            joinColumns = @JoinColumn(name = "id_incidente"),
+            inverseJoinColumns = @JoinColumn(name = "id_servicio")
+    )
+    private List<Servicio> servicio;
 
     @ManyToMany
     @JoinTable(
