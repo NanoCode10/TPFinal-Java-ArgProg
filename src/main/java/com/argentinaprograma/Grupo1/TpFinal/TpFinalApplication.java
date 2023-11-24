@@ -21,8 +21,6 @@ public class TpFinalApplication {
 	private static IncidenteService incidenteService;
 
 	private static MedioComunicacionService medioComunicacionService;
-
-
 	@Autowired
 	public TpFinalApplication(ClienteService clienteService,
 							  ServicioService servicioService,
@@ -58,7 +56,7 @@ public class TpFinalApplication {
 
 		e1.setId(especialidadService.guardar(e1));
 
-		Tecnico t1 = new Tecnico(1,"Pedro","Gonzales",e1,m1);
+		Tecnico t1 = new Tecnico(1,"Pedro","Gonzales",List.of(e1),m1);
 
 		t1.setId(tecnicoService.guardar(t1));
 

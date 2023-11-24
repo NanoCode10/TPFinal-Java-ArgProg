@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
+
 @Entity
 @Table(name = "tecnico")
 @NoArgsConstructor
@@ -16,13 +19,13 @@ public class Tecnico {
     private String nombre;
     private String apellido;
 
-  //  @ManyToOne
-   // @JoinColumn(name = "id_incidente", referencedColumnName = "id")
-   // private Incidente incidente;
-
-    @ManyToOne
-    @JoinColumn(name = "id_especialidad",referencedColumnName = "id")
-    private Especialidad especialidad;
+    @ManyToMany
+    @JoinTable(
+            name = "Tecnico_especialidad",
+            joinColumns = @JoinColumn(name = "id_tecnico"),
+            inverseJoinColumns = @JoinColumn(name = "id_especialidad")
+        )
+    private List<Especialidad> especialidadList;
 
     @ManyToOne
     @JoinColumn(name = "id_mediocomunicacion",referencedColumnName = "id")
