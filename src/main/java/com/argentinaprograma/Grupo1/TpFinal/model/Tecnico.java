@@ -19,7 +19,7 @@ public class Tecnico {
     private String nombre;
     private String apellido;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "Tecnico_especialidad",
             joinColumns = @JoinColumn(name = "id_tecnico"),

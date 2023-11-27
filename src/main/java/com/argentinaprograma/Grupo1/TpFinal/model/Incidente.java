@@ -27,14 +27,14 @@ public class Incidente {
     private String consideraciones;
 
     @ManyToOne
-    @JoinColumn(name = "id_incidente", referencedColumnName = "id")
+    @JoinColumn(name = "id_cliente", referencedColumnName = "id")
     private Cliente cliente;
 
     @ManyToOne
     @JoinColumn(name = "id_tipoproblema", referencedColumnName = "id")
     private TipoProblema tipoProblema;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "incidente_servicio",
             joinColumns = @JoinColumn(name = "id_incidente"),
@@ -42,15 +42,11 @@ public class Incidente {
     )
     private List<Servicio> servicio;
 
-    @ManyToMany
-    @JoinTable(
-            name = "incidente_especialidad",
-            joinColumns = @JoinColumn(name = "id_incidente"),
-            inverseJoinColumns = @JoinColumn(name = "id_especialidad")
-    )
-    private List<Especialidad> especialidadList;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_especialidad", referencedColumnName = "id")
+    private Especialidad especialidad;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_tecnico", referencedColumnName = "id")
     private Tecnico tecnico;
 

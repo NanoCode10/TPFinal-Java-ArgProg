@@ -18,5 +18,7 @@ public class MedioComunicacionService {
     public Integer guardar(MedioComunicacion m){
         return medioComunicacionRepository.save(m).getId();
     }
+
+
 }
 
