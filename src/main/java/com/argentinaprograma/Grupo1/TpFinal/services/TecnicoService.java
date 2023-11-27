@@ -35,6 +35,8 @@ public class TecnicoService {
         return tecnicoRepository.findAll();
     }
 
+
+    //Quién fue el técnico con más incidentes resueltos en los últimos N días
     public Tecnico buscarTodosConMasIncidentesNdias(int n){
 
        LocalDate fechaAnterior = LocalDate.now().minusDays(n);
@@ -61,6 +63,7 @@ public class TecnicoService {
 
     }
 
+    //Quién fue el técnico con más incidentes resueltos de una determinada especialidad en los últimos N días
     public Tecnico buscarTecnicoXEspecialidadEnNdias(Especialidad especialidad, int n){
 
         LocalDate fechaAnterior = LocalDate.now().minusDays(n);
@@ -94,6 +97,8 @@ public class TecnicoService {
         return tecnicoConMasIncidentes;
 
     }
+
+    //Quién fue el técnico que más rápido resolvió los incidentes
     public Tecnico buscaTecnicoMasRapidoResolucionIncidentes(){
         List<Incidente> incidenteList = incidenteRepository.findAll();
 
@@ -120,6 +125,7 @@ public class TecnicoService {
         return tecnicoMasRapido.map(Map.Entry::getKey).orElse(null);
     }
 
+    //Metodo para resolver el tiempo estimado fechas entre fechas
     private Double calcularTiempoEstimadoResolucion(LocalDate fechaIngreso, LocalDate fechaResolucion) {
         // Calcula la diferencia en días
         double diferenciaEnDias = (fechaResolucion.toEpochDay() - fechaIngreso.toEpochDay());

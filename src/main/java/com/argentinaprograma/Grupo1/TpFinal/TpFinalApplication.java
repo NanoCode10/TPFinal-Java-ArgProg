@@ -11,8 +11,6 @@ import java.util.List;
 
 
 @SpringBootApplication
-
-
 public class TpFinalApplication {
 	private static ClienteService clienteService;
 	private static ServicioService servicioService;
@@ -44,32 +42,31 @@ public class TpFinalApplication {
 
 	public static void main(String[] args) {
 
-
 		SpringApplication.run(TpFinalApplication.class, args);
 
+		//inicializa las entidades
 		inicializarEntidades();
 
+		//crea una especialidad para compararla
 		Especialidad e1 = new Especialidad(1,"Sistemas Operativos","soporte de windows, linux y mac");
 
-		Especialidad e4 = new Especialidad(4,"Sistemas camaras , redes y asistencia","soporte a camaras , redes y sistem de asitencia");
-
-
+		//Requerimiento: A
 		System.out.println("Requerimiento: A ,  Quién fue el técnico con más incidentes resueltos en los últimos N días");
-		System.out.println("--------------------------------------------");
+		System.out.println("--------------------------------------------\n");
 		System.out.println(tecnicoService.buscarTodosConMasIncidentesNdias(30));
-		System.out.println("--------------------------------------------");
+		System.out.println("--------------------------------------------\n");
 
-
+		//Requerimiento: B
 		System.out.println("Requerimiento: B , Quién fue el técnico con más incidentes resueltos de una determinada especialidad en los últimos N días");
 		System.out.println("--------------------------------------------");
 		System.out.println(tecnicoService.buscarTecnicoXEspecialidadEnNdias(e1, 20));
-		System.out.println("--------------------------------------------");
+		System.out.println("--------------------------------------------\n");
 
+		//Requerimiento: C
 		System.out.println("Requerimiento: C , Quién fue el técnico que más rápido resolvió los incidentes");
 		System.out.println("--------------------------------------------\n");
 		System.out.println(tecnicoService.buscaTecnicoMasRapidoResolucionIncidentes());
 		System.out.println("--------------------------------------------\n");
-
 
 	}
 
@@ -108,8 +105,6 @@ public class TpFinalApplication {
 		Especialidad e4 = new Especialidad(4,"Sistemas camaras , redes y asistencia","soporte a camaras , redes y sistem de asitencia");
 		Especialidad e5 = new Especialidad(5,"Sistemas webs y moviles","soporte web y moviles");
 
-
-
 		e1.setId(especialidadService.guardar(e1));
 		e2.setId(especialidadService.guardar(e2));
 		e3.setId(especialidadService.guardar(e3));
@@ -117,10 +112,7 @@ public class TpFinalApplication {
 		e5.setId(especialidadService.guardar(e5));
 
 
-
-
         //TECNICO
-
 
 		Tecnico t1 = new Tecnico(1,"Pedro","Gonzales",List.of(e1),m1);
 		Tecnico t2 = new Tecnico(2,"Juan","Alvarez",List.of(e1,e2,e3),m2);
@@ -145,9 +137,7 @@ public class TpFinalApplication {
 		t10.setId(tecnicoService.guardar(t10));
 
 
-
 		//SERVICIO
-
 
 		Servicio s1= new Servicio(1,"Windows","esto es un servicio de windows ");
 		Servicio s2= new Servicio(2,"MacOs","esto es un servicio de MacOs ");
@@ -171,9 +161,7 @@ public class TpFinalApplication {
 		s9.setId(servicioService.guardar(s9));
 		s10.setId(servicioService.guardar(s10));
 
-
 		//TIPO_PROBLEMA
-
 
 		TipoProblema tp1 = new TipoProblema(1,"error al cargar widows", 2,24 );
 		TipoProblema tp2 = new TipoProblema(2,"error al cargar MacOs", 2,4 );
@@ -200,8 +188,6 @@ public class TpFinalApplication {
 
 	   //CLIENTE
 
-
-
 		Cliente c1 = new Cliente(1,1234,"mail1@mail","primerEmpresa","juan","pablo1",s1);
 		Cliente c2 = new Cliente(2,5678,"mail2@mail","sengaEmpresa","juan2","pablo2",s2);
 		Cliente c3 = new Cliente(3,4583,"mail3@mail","tercerEmpresa","juan3","pablo3",s3);
@@ -225,9 +211,7 @@ public class TpFinalApplication {
 		c10.setId(clienteService.guardar(c10));
 
 
-
 		//INCIDENTE
-
 
 		Incidente i1 = new Incidente(
 				1,
@@ -247,11 +231,9 @@ public class TpFinalApplication {
 				LocalDate.of(2023,11,12),
 				LocalDate.of(2023,11,13),
 				LocalDate.of(2023,11,13),
-				EstadoEnum.INCOMPLETO,
+				EstadoEnum.FINALIZADO,
 				"es el jefe",
 				c2,tp2,List.of(s2), e1,t2);
-
-
 
 		Incidente i3 = new Incidente(
 				3,
@@ -264,8 +246,6 @@ public class TpFinalApplication {
 				"es un servidor",
 				c3,tp3,List.of(s3), e1,t2);
 
-
-
 		Incidente i4 = new Incidente(
 				4,
 				"no carga contable",
@@ -276,7 +256,6 @@ public class TpFinalApplication {
 				EstadoEnum.FINALIZADO,
 				"se deben 3 meses",
 				c4,tp4,List.of(s4), e2,t4);
-
 
 		Incidente i5 = new Incidente(
 				5,
@@ -289,9 +268,6 @@ public class TpFinalApplication {
 				"se necesita capacitacion",
 				c5,tp6,List.of(s6),e3,t5);
 
-
-
-
 		Incidente i6 = new Incidente(
 				6,
 				"sistema de camaras",
@@ -299,11 +275,9 @@ public class TpFinalApplication {
 				LocalDate.of(2023,11,16),
 				LocalDate.of(2023,11,20),
 				LocalDate.of(2023,11,16),
-				EstadoEnum.EN_PROCESO,
+				EstadoEnum.FINALIZADO,
 				"robo del vecino",
 				c6,tp7,List.of(s7), e4,t6);
-
-
 
 		Incidente i7 = new Incidente(
 				7,
@@ -327,7 +301,6 @@ public class TpFinalApplication {
 				"necesitan ayuda",
 				c8,tp8,List.of(s9), e5,t10);
 
-
 		Incidente i9 = new Incidente(
 				9,
 				"error en la app",
@@ -338,8 +311,6 @@ public class TpFinalApplication {
 				EstadoEnum.FINALIZADO,
 				"el modulo de  compras no anda",
 				c9,tp9,List.of(s9), e5,t10);
-
-
 
 		Incidente i10 = new Incidente(
 				10,
@@ -352,9 +323,6 @@ public class TpFinalApplication {
 				"es actualziar",
 				c10,tp9,List.of(s4), e2,t10);
 
-
-
-
 		i1.setId(incidenteService.guardar(i1));
 		i2.setId(incidenteService.guardar(i2));
 		i3.setId(incidenteService.guardar(i3));
@@ -365,11 +333,6 @@ public class TpFinalApplication {
 		i8.setId(incidenteService.guardar(i8));
 		i9.setId(incidenteService.guardar(i9));
 		i10.setId(incidenteService.guardar(i10));
-
-
-
-
-
 
 
 	}
